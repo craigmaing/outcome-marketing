@@ -1,0 +1,253 @@
+---
+// Services Component - Research-Driven Design (2025)
+//
+// RESEARCH FINDINGS APPLIED:
+// - Card layout best practice: title → description → feature list → CTA (Source: B2B website design 2025)
+// - "Maximalist Minimalism" trend: balance white space with bold colors (Source: 2025 B2B web design trends)
+// - 3-column grid for service comparison (Source: SaaS pricing page best practices)
+// - Hover effects: 3D transforms, subtle glows, micro-interactions (Source: CSS hover effects 2025)
+// - Strategic use of clean space for intuitive navigation (Source: B2B UX best practices)
+//
+// CARD STRUCTURE DECISIONS:
+// - Consistent card layout creates easy comparisons for visitors
+// - Gradient backgrounds (from-slate-50 to-white) provide subtle depth
+// - 2xl rounded corners follow modern design standards
+// - Border transitions on hover (slate-100 → brand-accent)
+//
+// HOVER EFFECT DECISIONS:
+// - 3D lift effect: -translate-y-2 (Source: 2025 card hover trends)
+// - Shadow progression: default → 2xl on hover (depth illusion)
+// - Icon scale animation: 110% on card hover (subtle interaction)
+// - Glow effect on cards: brand-accent shadow (lighting effect trend)
+// - Arrow animation on CTA: translate-x-2 (micro-interaction)
+//
+// ICON DESIGN DECISIONS:
+// - Gradient backgrounds (primary → accent) for visual hierarchy
+// - SVG vector icons for scalability (Source: SaaS icon design best practices)
+// - 8x8 icon size with 16x16 container (proper spacing ratio)
+// - Consistent cyan accent color across all checkmark icons
+// - White icon color for contrast against gradient backgrounds
+//
+// FEATURE LIST DECISIONS:
+// - Checkmark icons establish trust and completion
+// - Hover scale on list items for engagement (micro-interaction)
+// - Consistent spacing (space-y-3) for readability
+// - Text-sm size for feature items (optimal for scanning)
+//
+// COLOR & ACCESSIBILITY DECISIONS:
+// - Brand-primary (#1E3A8A) and brand-accent (#06B6D4) maintain consistency
+// - Slate-600 for body text (WCAG AA compliant contrast ratio)
+// - Brand-dark for headings (maximum readability)
+//
+// BOTTOM CTA DECISIONS:
+// - Fallback CTA for undecided visitors (reduces decision paralysis)
+// - Primary button style maintains consistency with Hero
+// - "Let's Talk" emphasizes consultation over hard sell
+---
+
+<section id="services" class="py-20 lg:py-32 bg-white">
+	<div class="container mx-auto px-6 lg:px-8">
+		<!-- Section Header -->
+		<div class="max-w-3xl mx-auto text-center mb-16">
+			<div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/5 rounded-full border border-brand-primary/10 mb-6">
+				<span class="text-sm font-medium text-brand-primary">
+					What We Do
+				</span>
+			</div>
+			<h2 class="text-4xl lg:text-5xl font-bold text-brand-dark mb-6">
+				Three Ways We <span class="text-brand-primary">Transform</span> Your Website
+			</h2>
+			<p class="text-xl text-slate-600">
+				We don't do everything. We do three things exceptionally well.
+			</p>
+		</div>
+
+		<!-- Service Cards Grid -->
+		<!-- Research: 3-column layout allows easy comparison between services -->
+		<div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+			<!-- Service 1: Backend SEO -->
+			<!-- Research: Hover glow effect (brand-accent/20) creates 2025 lighting effect trend -->
+			<div class="group bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border-2 border-slate-100 hover:border-brand-accent hover:shadow-2xl hover:shadow-brand-accent/20 transition-all duration-300 hover:-translate-y-2">
+				<!-- Icon -->
+				<div class="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-accent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+					<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+					</svg>
+				</div>
+
+				<!-- Content -->
+				<h3 class="text-2xl font-bold text-brand-dark mb-4">
+					Backend SEO Optimization
+				</h3>
+				<p class="text-slate-600 mb-6 leading-relaxed">
+					Already have a website? We'll fix what's broken under the hood. No rebuild needed—just expert technical SEO that makes your existing site work harder.
+				</p>
+
+				<!-- Features List -->
+				<!-- Research: Micro-interactions on list items engage users (2025 trend) -->
+				<ul class="space-y-3 mb-8">
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Technical SEO audit & fixes</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Site speed optimization</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Schema markup & structured data</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Mobile optimization</span>
+					</li>
+				</ul>
+
+				<!-- CTA -->
+				<a href="#contact" class="inline-flex items-center text-brand-primary font-semibold group-hover:text-brand-accent transition-colors">
+					Learn More
+					<svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+					</svg>
+				</a>
+			</div>
+
+			<!-- Service 2: Content Creation -->
+			<!-- Research: Consistent hover effects across all cards for unified experience -->
+			<div class="group bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border-2 border-slate-100 hover:border-brand-accent hover:shadow-2xl hover:shadow-brand-accent/20 transition-all duration-300 hover:-translate-y-2">
+				<!-- Icon -->
+				<div class="w-16 h-16 bg-gradient-to-br from-brand-accent to-brand-primary rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+					<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+					</svg>
+				</div>
+
+				<!-- Content -->
+				<h3 class="text-2xl font-bold text-brand-dark mb-4">
+					SEO-Optimized Content
+				</h3>
+				<p class="text-slate-600 mb-6 leading-relaxed">
+					Blogs and articles that actually rank. We research, write, and optimize content that brings qualified traffic to your site—and keeps them engaged.
+				</p>
+
+				<!-- Features List -->
+				<!-- Research: Consistent micro-interactions across all service cards -->
+				<ul class="space-y-3 mb-8">
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Keyword research & strategy</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Expert content writing</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">On-page SEO optimization</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Regular publishing schedule</span>
+					</li>
+				</ul>
+
+				<!-- CTA -->
+				<a href="#contact" class="inline-flex items-center text-brand-primary font-semibold group-hover:text-brand-accent transition-colors">
+					Learn More
+					<svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+					</svg>
+				</a>
+			</div>
+
+			<!-- Service 3: Landing Pages -->
+			<!-- Research: Glow effect completes the card interaction pattern -->
+			<div class="group bg-gradient-to-br from-slate-50 to-white rounded-2xl p-8 border-2 border-slate-100 hover:border-brand-accent hover:shadow-2xl hover:shadow-brand-accent/20 transition-all duration-300 hover:-translate-y-2">
+				<!-- Icon -->
+				<div class="w-16 h-16 bg-gradient-to-br from-brand-primary to-brand-accent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+					<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+					</svg>
+				</div>
+
+				<!-- Content -->
+				<h3 class="text-2xl font-bold text-brand-dark mb-4">
+					High-Converting Landing Pages
+				</h3>
+				<p class="text-slate-600 mb-6 leading-relaxed">
+					One page. One goal. Maximum conversions. We design focused landing pages that turn visitors into customers—perfect for campaigns, launches, and lead generation.
+				</p>
+
+				<!-- Features List -->
+				<!-- Research: Micro-interactions add personality and guide users -->
+				<ul class="space-y-3 mb-8">
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Conversion-focused design</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Compelling copywriting</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">A/B testing ready</span>
+					</li>
+					<li class="flex items-start gap-3 hover:translate-x-1 transition-transform duration-200">
+						<svg class="w-5 h-5 text-brand-accent mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+							<path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+						</svg>
+						<span class="text-sm text-slate-700">Mobile-optimized</span>
+					</li>
+				</ul>
+
+				<!-- CTA -->
+				<a href="#contact" class="inline-flex items-center text-brand-primary font-semibold group-hover:text-brand-accent transition-colors">
+					Learn More
+					<svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+					</svg>
+				</a>
+			</div>
+		</div>
+
+		<!-- Bottom CTA -->
+		<div class="text-center mt-16">
+			<p class="text-slate-600 mb-6">
+				Not sure which service you need?
+			</p>
+			<a
+				href="#contact"
+				class="inline-flex items-center justify-center px-8 py-4 bg-brand-primary text-white font-semibold rounded-lg hover:bg-brand-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105"
+			>
+				Let's Talk
+				<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+				</svg>
+			</a>
+		</div>
+	</div>
+</section>

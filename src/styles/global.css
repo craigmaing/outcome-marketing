@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+	/* Brand Colors - Based on 2025 Research */
+	--color-brand-primary: #1E3A8A; /* Deep Blue - Most trusted */
+	--color-brand-accent: #06B6D4; /* Cyan - Modern, tech */
+	--color-brand-dark: #0F172A; /* Dark Slate */
+
+	/* Semantic Colors */
+	--color-primary-50: #EFF6FF;
+	--color-primary-100: #DBEAFE;
+	--color-primary-600: #1E3A8A;
+	--color-primary-700: #1E40AF;
+	--color-primary-800: #1E3A8A;
+	--color-primary-900: #1E3A8A;
+
+	/* Font Family */
+	--font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
