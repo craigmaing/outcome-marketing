@@ -1,0 +1,40 @@
+---
+// Button Group Component for Outcome Digital Marketing Design System
+export interface Props {
+  orientation?: 'horizontal' | 'vertical';
+  spacing?: 'none' | 'sm' | 'md' | 'lg';
+  class?: string;
+  children: any;
+}
+
+const {
+  orientation = 'horizontal',
+  spacing = 'sm',
+  class: className = '',
+  children,
+} = Astro.props;
+
+// Generate base classes
+const baseClasses = 'flex';
+
+// Orientation classes
+const orientationClasses = {
+  horizontal: 'flex-row',
+  vertical: 'flex-col'
+};
+
+// Spacing classes
+const spacingClasses = {
+  none: '',
+  sm: orientation === 'horizontal' ? 'space-x-2' : 'space-y-2',
+  md: orientation === 'horizontal' ? 'space-x-4' : 'space-y-4',
+  lg: orientation === 'horizontal' ? 'space-x-6' : 'space-y-6'
+};
+
+// Combine all classes
+const groupClasses = `${baseClasses} ${orientationClasses[orientation]} ${spacingClasses[spacing]} ${className}`.trim();
+---
+
+<div class={groupClasses} role="group">
+  <slot />
+</div>

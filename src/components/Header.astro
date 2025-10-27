@@ -1,0 +1,165 @@
+---
+export interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = "/" } = Astro.props;
+
+const navigation = [
+  { name: "Home", href: "/" },
+  { name: "Services", href: "/services" },
+  { name: "About", href: "/about" },
+  { name: "Case Studies", href: "/case-studies" },
+  { name: "Contact", href: "/contact" },
+];
+
+const isActive = (href: string) => {
+  if (href === "/") {
+    return currentPath === "/" || currentPath === "";
+  }
+  return currentPath.startsWith(href);
+};
+---
+
+<header class="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="flex items-center justify-between h-20" aria-label="Main navigation">
+      <!-- Logo -->
+      <div class="flex items-center flex-shrink-0">
+        <a
+          href="/"
+          class="flex items-center gap-3 group transition-transform duration-200 hover:scale-105"
+          aria-label="Outcome Digital Marketing - Home"
+        >
+          <div class="w-11 h-11 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-200">
+            <span class="text-white font-bold text-xl tracking-tight">O</span>
+          </div>
+          <div class="leading-tight">
+            <span class="font-bold text-xl text-gray-900 tracking-tight">Outcome</span>
+            <span class="text-[13px] font-medium block text-gray-600 tracking-wide">Digital Marketing</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex items-center gap-1" role="menubar">
+        {navigation.map((item) => (
+          <li role="none">
+            <a
+              href={item.href}
+              role="menuitem"
+              class={`
+                relative px-4 py-2 text-[15px] font-medium rounded-lg
+                transition-all duration-200 ease-in-out
+                ${isActive(item.href)
+                  ? "text-primary bg-primary/5"
+                  : "text-gray-700 hover:text-primary hover:bg-gray-50"
+                }
+                focus:outline-none focus:ring-2 focus:ring-primary/20 focus:ring-offset-2
+              `}
+            >
+              {item.name}
+              {isActive(item.href) && (
+                <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full" aria-hidden="true"></span>
+              )}
+            </a>
+          </li>
+        ))}
+        <li role="none" class="ml-2">
+          <a
+            href="/contact"
+            role="menuitem"
+            class="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-[15px] font-semibold shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-200"
+          >
+            Get Started
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Mobile menu button -->
+      <button
+        type="button"
+        class="md:hidden p-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors duration-200"
+        id="mobile-menu-button"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="hidden md:hidden border-t border-gray-100" id="mobile-menu">
+      <nav class="py-4 space-y-1" aria-label="Mobile navigation">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class={`
+              block px-4 py-3 rounded-lg text-base font-medium
+              transition-all duration-200
+              ${isActive(item.href)
+                ? "bg-primary text-white shadow-sm"
+                : "text-gray-700 hover:bg-gray-50 hover:text-primary active:bg-gray-100"
+              }
+              focus:outline-none focus:ring-2 focus:ring-primary/20
+            `}
+          >
+            {item.name}
+          </a>
+        ))}
+        <a
+          href="/contact"
+          class="block mt-4 px-4 py-3 rounded-lg text-base font-semibold text-center btn-primary shadow-md focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        >
+          Get Started
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      const newState = !isExpanded;
+
+      mobileMenuButton.setAttribute('aria-expanded', String(newState));
+      mobileMenu.classList.toggle('hidden');
+
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = newState ? 'hidden' : '';
+    });
+
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+        mobileMenuButton.focus();
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (!mobileMenu.classList.contains('hidden') &&
+          !mobileMenu.contains(target) &&
+          !mobileMenuButton.contains(target)) {
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+</script>

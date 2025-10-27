@@ -1,0 +1,280 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+export const getStaticPaths = (async () => {
+  const blogPosts = await getCollection('blog');
+  return blogPosts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Get SEO data from frontmatter
+const pageTitle = post.data.seoTitle || `${post.data.title} | Outcome Digital Marketing`;
+const pageDescription = post.data.seoDescription || post.data.description;
+
+// Get related posts (same category, excluding current post)
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug && p.data.category === post.data.category)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+---
+
+<PageLayout title={pageTitle} description={pageDescription} currentPath={`/blog/${post.slug}`}>
+  <!-- Article Header -->
+  <article>
+    <header class="relative bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white py-20 overflow-hidden">
+      <!-- Decorative gradient overlay -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative container">
+        <div class="max-w-4xl mx-auto">
+          <!-- Category Badge -->
+          <div class="mb-6">
+            <span class="inline-block bg-primary/10 text-primary text-sm font-semibold px-4 py-2 rounded-full">
+              {post.data.category}
+            </span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="!text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+            {post.data.title}
+          </h1>
+
+          <!-- Meta Info -->
+          <div class="flex flex-wrap items-center gap-6 !text-gray-300">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+              <span class="font-medium">{post.data.author}</span>
+              {post.data.authorTitle && <span class="text-sm">• {post.data.authorTitle}</span>}
+            </div>
+
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <span>{post.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+            </div>
+
+            {post.data.readingTime && (
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>{post.data.readingTime} min read</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Article Content -->
+    <div class="py-16 bg-white">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <!-- Featured Image -->
+          {post.data.image && (
+            <div class="mb-12 rounded-xl overflow-hidden shadow-lg">
+              <img
+                src={post.data.image}
+                alt={post.data.title}
+                class="w-full h-auto"
+              />
+            </div>
+          )}
+
+          <!-- Article Body -->
+          <div class="prose prose-lg max-w-none
+            prose-headings:text-gray-900 prose-headings:font-bold
+            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+            prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
+            prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6
+            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+            prose-strong:text-gray-900
+            prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
+            prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
+            prose-li:text-gray-700 prose-li:mb-2
+            prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-gray-600 prose-blockquote:bg-gray-50 prose-blockquote:py-4
+            prose-code:text-primary prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded
+            prose-pre:bg-gray-900 prose-pre:text-gray-100
+            prose-img:rounded-lg prose-img:shadow-md">
+            <Content />
+          </div>
+
+          <!-- Tags -->
+          {post.data.tags && post.data.tags.length > 0 && (
+            <div class="mt-12 pt-8 border-t border-gray-200">
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">Tags:</h3>
+              <div class="flex flex-wrap gap-2">
+                {post.data.tags.map(tag => (
+                  <span class="inline-block bg-primary/10 text-primary text-sm font-semibold px-4 py-2 rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Share Buttons -->
+          <div class="mt-12 pt-8 border-t border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Share this article:</h3>
+            <div class="flex gap-4">
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.data.title)}&url=${encodeURIComponent(Astro.site + 'blog/' + post.slug)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-5 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                aria-label="Share on Twitter"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+                <span>Twitter</span>
+              </a>
+              <a
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.site + 'blog/' + post.slug)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                aria-label="Share on LinkedIn"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Author Bio -->
+    <section class="py-16 bg-gray-50">
+      <div class="container">
+        <div class="max-w-4xl mx-auto">
+          <div class="bg-white border border-gray-200 rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-start gap-6">
+              <div class="flex-shrink-0">
+                <div class="w-20 h-20 bg-gradient-to-br from-primary to-primary-dark rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-md">
+                  {post.data.author.charAt(0)}
+                </div>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">About {post.data.author}</h3>
+                {post.data.authorTitle && (
+                  <p class="text-primary font-semibold mb-4">{post.data.authorTitle}</p>
+                )}
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                  Outcome Digital Marketing specializes in transforming underperforming websites into powerful ranking assets. We focus on delivering measurable results through strategic SEO, content creation, and technical optimization.
+                </p>
+                <a
+                  href="/contact"
+                  class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-all duration-200 shadow-md hover:shadow-lg"
+                >
+                  <span>Work With Us</span>
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Posts -->
+    {relatedPosts.length > 0 && (
+      <section class="py-20 bg-white">
+        <div class="container">
+          <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-12">Related Articles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {relatedPosts.map((relatedPost) => (
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300 h-full flex flex-col">
+                  {relatedPost.data.image && (
+                    <div class="relative overflow-hidden">
+                      <img
+                        src={relatedPost.data.image}
+                        alt={relatedPost.data.title}
+                        class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  )}
+                  <div class="p-8 flex-1 flex flex-col">
+                    <div class="mb-4">
+                      <span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-4 py-2 rounded-full">
+                        {relatedPost.data.category}
+                      </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300 leading-tight">
+                      <a href={`/blog/${relatedPost.slug}`} class="hover:text-primary transition-colors">
+                        {relatedPost.data.title}
+                      </a>
+                    </h3>
+                    <p class="text-gray-600 mb-6 flex-1 leading-relaxed">{relatedPost.data.description}</p>
+                    <a
+                      href={`/blog/${relatedPost.slug}`}
+                      class="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark transition-all duration-200 group/link"
+                    >
+                      <span>Read Article</span>
+                      <svg
+                        class="w-5 h-5 transition-transform duration-200 group-hover/link:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- CTA Section -->
+    <section class="relative py-20 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white overflow-hidden">
+      <!-- Decorative gradient overlay -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative container text-center">
+        <h2 class="!text-white text-3xl md:text-5xl font-bold mb-6">
+          Ready to Improve Your SEO?
+        </h2>
+        <p class="!text-gray-300 text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
+          Get personalized SEO recommendations and a comprehensive audit of your website to start driving real results.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+        >
+          <span>Get Your Free SEO Audit</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </article>
+</PageLayout>

@@ -1,0 +1,399 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Button from '../components/ui/buttons/Button.astro';
+import ServiceCard from '../components/ui/cards/ServiceCard.astro';
+import TestimonialCard from '../components/ui/cards/TestimonialCard.astro';
+import Card from '../components/ui/cards/Card.astro';
+
+const pageTitle = "Outcome Digital Marketing Ltd - Transform Your Website's SEO Performance";
+const pageDescription = "Expert SEO agency specializing in transforming underperforming websites into ranking assets. We improve existing sites and create strategic content to boost your search rankings.";
+---
+
+<PageLayout title={pageTitle} description={pageDescription} currentPath="/">
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white py-24 overflow-hidden">
+    <!-- Decorative gradient overlay -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative container">
+      <div class="max-w-5xl mx-auto text-center">
+        <!-- Trust Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6 text-sm font-semibold border border-white/20">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>Trusted by 50+ UK Businesses</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="!text-white text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          Transform Your Website into a <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Ranking Asset</span>
+        </h1>
+
+        <!-- Subheading -->
+        <p class="!text-gray-300 text-xl md:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed">
+          We turn underperforming websites into powerful ranking assets through strategic SEO improvements and compelling content creation.
+        </p>
+
+        <!-- Social Proof Stats -->
+        <div class="flex flex-wrap justify-center gap-6 md:gap-8 mb-10 text-sm md:text-base !text-gray-300">
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-semibold !text-white">250%</span>
+            <span>Avg. Traffic Increase</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-semibold !text-white">90 Days</span>
+            <span>To See Results</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-semibold !text-white">No Contracts</span>
+            <span>Cancel Anytime</span>
+          </div>
+        </div>
+
+        <!-- CTAs with Icons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="/contact" class="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 text-lg group">
+            <span>Get Your Free SEO Audit</span>
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
+          </a>
+          <a href="/services" class="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl text-lg border border-white/20">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+            <span>Our Services</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="py-24 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container">
+      <!-- Enhanced header with subtle decoration -->
+      <div class="text-center mb-20">
+        <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6 text-sm font-semibold">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+          </svg>
+          <span>Our Services</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+          How We Transform <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Your Website</span>
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Our comprehensive approach addresses every aspect of your website's SEO performance
+        </p>
+      </div>
+
+      <!-- Cards with enhanced spacing -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 max-w-7xl mx-auto">
+        <ServiceCard
+          title="SEO Audit & Analysis"
+          description="Comprehensive analysis of your website's current performance and identifying opportunities for improvement."
+          icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          iconColor="primary"
+          href="/services"
+          buttonText="Learn More"
+        />
+
+        <ServiceCard
+          title="Content Creation"
+          description="Strategic blog posts and written content designed to improve your search rankings and engage your audience."
+          icon="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+          iconColor="secondary"
+          href="/services"
+          buttonText="Learn More"
+        />
+
+        <ServiceCard
+          title="Technical Optimization"
+          description="Improving site speed, mobile responsiveness, and technical SEO factors that impact your search rankings."
+          icon="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+          iconColor="primary"
+          href="/services"
+          buttonText="Learn More"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Deliver Section -->
+  <section class="py-24 md:py-32 bg-gradient-to-b from-white to-gray-50">
+    <div class="container">
+      <!-- Enhanced header with badge and gradient text -->
+      <div class="text-center mb-20">
+        <div class="inline-flex items-center gap-2 bg-success/10 text-success px-4 py-2 rounded-full mb-6 text-sm font-semibold">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>What We Deliver</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+          Clear Services with <span class="text-transparent bg-clip-text bg-gradient-to-r from-success to-success-dark">Measurable Outcomes</span>
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Every service we provide has a direct, trackable impact on your search rankings and traffic
+        </p>
+      </div>
+
+      <!-- Enhanced cards with hover effects -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 max-w-7xl mx-auto">
+        <!-- Card 1 -->
+        <div class="group relative bg-white border border-gray-200 rounded-xl p-8 transition-all duration-300 ease-out overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300">
+          <!-- Gradient overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-success/0 to-success/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <!-- Content container -->
+          <div class="relative z-10">
+            <div class="mb-6 bg-success/10 group-hover:bg-success/20 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md">
+              <svg class="w-8 h-8 text-success transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-success transition-colors duration-300">
+              Technical Fixes That Work
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+              We identify and fix the invisible problems killing your rankings: broken links, slow loading times, mobile issues, and technical SEO factors.
+            </p>
+          </div>
+
+          <!-- Decorative corner accent -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-success to-success-dark opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500 pointer-events-none"></div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group relative bg-white border border-gray-200 rounded-xl p-8 transition-all duration-300 ease-out overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300">
+          <!-- Gradient overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-success/0 to-success/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <!-- Content container -->
+          <div class="relative z-10">
+            <div class="mb-6 bg-success/10 group-hover:bg-success/20 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md">
+              <svg class="w-8 h-8 text-success transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-success transition-colors duration-300">
+              Content That Gets Found
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+              SEO-optimized blog posts and articles that actually rank. Not fluff—content designed to answer what your customers are searching for.
+            </p>
+          </div>
+
+          <!-- Decorative corner accent -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-success to-success-dark opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500 pointer-events-none"></div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="group relative bg-white border border-gray-200 rounded-xl p-8 transition-all duration-300 ease-out overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300">
+          <!-- Gradient overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-success/0 to-success/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <!-- Content container -->
+          <div class="relative z-10">
+            <div class="mb-6 bg-success/10 group-hover:bg-success/20 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md">
+              <svg class="w-8 h-8 text-success transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-success transition-colors duration-300">
+              Landing Pages That Convert
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+              Not every business needs a massive website. We build focused, single-page sites designed to turn visitors into customers.
+            </p>
+          </div>
+
+          <!-- Decorative corner accent -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-success to-success-dark opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500 pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="py-24 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container">
+      <!-- Enhanced header with badge and gradient text -->
+      <div class="text-center mb-20">
+        <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6 text-sm font-semibold">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          <span>Why Choose Us</span>
+        </div>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+          Why Choose <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Outcome Digital Marketing?</span>
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          We're different from other SEO agencies in ways that matter to your business
+        </p>
+      </div>
+
+      <!-- Enhanced 2x2 grid with modern card design -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 max-w-6xl mx-auto">
+        <!-- Card 1: Results-Driven -->
+        <div class="group relative bg-white border border-gray-200 rounded-xl p-8 transition-all duration-300 ease-out overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300">
+          <!-- Gradient overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <!-- Content container -->
+          <div class="relative z-10">
+            <div class="mb-6 bg-primary/10 group-hover:bg-primary/20 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md">
+              <svg class="w-8 h-8 text-primary transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
+              Results-Driven
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+              We focus on measurable outcomes that directly impact your business growth and bottom line.
+            </p>
+          </div>
+
+          <!-- Decorative corner accent -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary to-primary-dark opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500 pointer-events-none"></div>
+        </div>
+
+        <!-- Card 2: Transparency -->
+        <div class="group relative bg-white border border-gray-200 rounded-xl p-8 transition-all duration-300 ease-out overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300">
+          <!-- Gradient overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <!-- Content container -->
+          <div class="relative z-10">
+            <div class="mb-6 bg-primary/10 group-hover:bg-primary/20 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md">
+              <svg class="w-8 h-8 text-primary transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
+              Transparency
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+              Clear communication and honest reporting about what we're doing and the results we're achieving.
+            </p>
+          </div>
+
+          <!-- Decorative corner accent -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary to-primary-dark opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500 pointer-events-none"></div>
+        </div>
+
+        <!-- Card 3: Partnership -->
+        <div class="group relative bg-white border border-gray-200 rounded-xl p-8 transition-all duration-300 ease-out overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300">
+          <!-- Gradient overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <!-- Content container -->
+          <div class="relative z-10">
+            <div class="mb-6 bg-primary/10 group-hover:bg-primary/20 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md">
+              <svg class="w-8 h-8 text-primary transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
+              Partnership
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+              We work alongside you as an extension of your team, invested in your success.
+            </p>
+          </div>
+
+          <!-- Decorative corner accent -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary to-primary-dark opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500 pointer-events-none"></div>
+        </div>
+
+        <!-- Card 4: Expertise -->
+        <div class="group relative bg-white border border-gray-200 rounded-xl p-8 transition-all duration-300 ease-out overflow-hidden hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300">
+          <!-- Gradient overlay on hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+          <!-- Content container -->
+          <div class="relative z-10">
+            <div class="mb-6 bg-primary/10 group-hover:bg-primary/20 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md">
+              <svg class="w-8 h-8 text-primary transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
+              Expertise
+            </h3>
+            <p class="text-gray-600 leading-relaxed text-base">
+              Deep SEO knowledge combined with understanding of what actually drives business results.
+            </p>
+          </div>
+
+          <!-- Decorative corner accent -->
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary to-primary-dark opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500 pointer-events-none"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative py-32 md:py-40 bg-gradient-to-br from-primary via-primary to-primary-dark overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-5 py-2.5 rounded-full mb-8 text-sm font-semibold border border-white/30">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+          </svg>
+          <span>Get Started Today</span>
+        </div>
+
+        <!-- Heading -->
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold !text-white mb-8 leading-tight">
+          Ready to Transform Your<br class="hidden md:block" />
+          <span class="!text-white drop-shadow-lg">Website's Performance?</span>
+        </h2>
+
+        <!-- Description -->
+        <p class="text-xl md:text-2xl !text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+          Get a comprehensive SEO audit and personalized recommendations for your website—completely free, no obligation.
+        </p>
+
+        <!-- CTA Button with icon -->
+        <a
+          href="/contact"
+          class="group inline-flex items-center gap-3 bg-white text-primary px-8 py-5 rounded-xl font-bold text-lg shadow-2xl hover:shadow-white/25 hover:scale-105 transition-all duration-300 ease-out"
+        >
+          <span>Start Your Transformation</span>
+          <svg class="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </a>
+
+        <!-- Trust signal -->
+        <p class="mt-8 !text-white/70 text-sm font-medium">
+          ✓ Trusted by 50+ UK businesses  •  ✓ Free consultation  •  ✓ No contracts required
+        </p>
+      </div>
+    </div>
+  </section>
+</PageLayout>

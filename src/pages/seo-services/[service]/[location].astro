@@ -1,0 +1,324 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { seoServices, seoLocations, getRandomItem, getRandomItems } from '../../../data/seo-data';
+import contentVariants from '../../../data/content-variants.json';
+
+export async function getStaticPaths() {
+  const paths = [];
+
+  for (const service of seoServices) {
+    for (const location of seoLocations) {
+      paths.push({
+        params: {
+          service: service.slug,
+          location: location.slug
+        },
+        props: {
+          service,
+          location
+        }
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { service, location } = Astro.props;
+
+// Helper function to replace variables in text
+function replaceVariables(text: string, data: any): string {
+  return text
+    .replace(/{service}/g, data.service)
+    .replace(/{location}/g, data.location)
+    .replace(/{region}/g, data.region)
+    .replace(/{population}/g, data.population)
+    .replace(/{business_density}/g, data.businessDensity)
+    .replace(/{key_industry_1}/g, data.keyIndustries[0] || 'business')
+    .replace(/{key_industry_2}/g, data.keyIndustries[1] || 'commerce')
+    .replace(/{key_industry_3}/g, data.keyIndustries[2] || 'services')
+    .replace(/{nearby_1}/g, data.nearbyCities[0] || data.location)
+    .replace(/{nearby_2}/g, data.nearbyCities[1] || data.location)
+    .replace(/{industry}/g, data.keyIndustries[0] || 'business');
+}
+
+// Data object for variable replacement
+const data = {
+  service: service.name,
+  location: location.city,
+  region: location.region,
+  population: location.population,
+  businessDensity: location.businessDensity,
+  keyIndustries: location.keyIndustries,
+  nearbyCities: location.nearbyCities
+};
+
+// Generate content using variants
+const hero = replaceVariables(getRandomItem(contentVariants.hero_blocks), data);
+const localContext = replaceVariables(getRandomItem(contentVariants.local_context_blocks), data);
+const whyUs = getRandomItem(contentVariants.why_us_blocks);
+const benefitsIntro = replaceVariables(getRandomItem(contentVariants.benefits_intro), data);
+const howItWorks = getRandomItem(contentVariants.how_it_works_blocks);
+const whoItsForIntro = replaceVariables(getRandomItem(contentVariants.who_its_for_intro), data);
+const industryChallenge = replaceVariables(getRandomItem(contentVariants.industry_challenge_blocks), data);
+const outcomeIntro = replaceVariables(getRandomItem(contentVariants.outcome_intro_blocks), data);
+const cta = replaceVariables(getRandomItem(contentVariants.cta_blocks), data);
+const trustSignal = replaceVariables(getRandomItem(contentVariants.trust_signals), data);
+
+// Rich depth content sections
+const detailedProcess = replaceVariables(getRandomItem(contentVariants.detailed_process_blocks), data);
+const localMarketInsights = replaceVariables(getRandomItem(contentVariants.local_market_insights_blocks), data);
+const caseStudy = replaceVariables(getRandomItem(contentVariants.case_study_snippets), data);
+const timelineExpectations = replaceVariables(getRandomItem(contentVariants.timeline_expectation_blocks), data);
+const serviceComparison = replaceVariables(getRandomItem(contentVariants.service_comparison_blocks), data);
+const pricingTransparency = replaceVariables(getRandomItem(contentVariants.pricing_transparency_blocks), data);
+
+// Select random items from service data with prefix variation
+const benefitPrefixes = ['', 'Get ', 'Achieve ', 'Experience ', 'Enjoy ', 'Benefit from '];
+const outcomePrefixes = ['', 'Expect ', 'See ', 'Achieve ', 'Get ', 'Realize '];
+
+const benefits = getRandomItems(service.benefits, Math.floor(Math.random() * 3) + 3).map(item => {
+  const prefix = getRandomItem(benefitPrefixes);
+  return prefix + item.toLowerCase();
+});
+
+const outcomes = getRandomItems(service.typicalOutcomes, Math.floor(Math.random() * 3) + 3).map(item => {
+  const prefix = getRandomItem(outcomePrefixes);
+  return prefix + item.toLowerCase();
+});
+
+const whoItsFor = getRandomItems(service.whoItsFor, Math.floor(Math.random() * 3) + 3);
+
+// Select 6 random FAQs
+const faqs = getRandomItems(contentVariants.faq_questions, 6).map((faq: any) => ({
+  question: replaceVariables(faq.question, data),
+  answer: replaceVariables(faq.answer, data)
+}));
+
+// Meta tags
+const title = `${service.name} in ${location.city} | Outcome Digital Marketing`;
+const description = `Professional ${service.name.toLowerCase()} services in ${location.city}. ${service.description}. Get a free consultation today.`;
+const canonicalUrl = `https://outcomemarketing.com/seo-services/${service.slug}/${location.slug}`;
+
+// Structured data (NO pricing info)
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": `${service.name} in ${location.city}`,
+  "description": description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Outcome Digital Marketing",
+    "url": "https://outcomemarketing.com"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": location.city,
+    "containedInPlace": {
+      "@type": "AdministrativeArea",
+      "name": location.region
+    }
+  },
+  "serviceType": service.name
+};
+---
+
+<Layout title={title} description={description} url={canonicalUrl}>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-20">
+      <div class="container mx-auto px-4">
+        <h1 class="text-5xl font-bold mb-6">{service.name} in {location.city}</h1>
+        <p class="text-xl mb-8 max-w-3xl">{hero}</p>
+        <a href="/contact" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block">
+          Get Started
+        </a>
+      </div>
+    </section>
+
+    <!-- Local Context -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">Serving {location.city} and {location.region}</h2>
+        <p class="text-lg leading-relaxed text-gray-700 mb-4">{localContext}</p>
+        <p class="text-lg leading-relaxed text-gray-700">{trustSignal}</p>
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">Why {location.city} Businesses Choose Us</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{whyUs}</p>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-4">What You'll Get</h2>
+        <p class="text-lg mb-8 text-gray-700">{benefitsIntro}</p>
+        <ul class="space-y-4">
+          {benefits.map((benefit: string) => (
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-lg text-gray-700">{benefit}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">How It Works</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{howItWorks}</p>
+      </div>
+    </section>
+
+    <!-- Industry Challenge -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">{location.city}'s Business Landscape</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{industryChallenge}</p>
+      </div>
+    </section>
+
+    <!-- Who It's For -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-4">Who Benefits from {service.name}?</h2>
+        <p class="text-lg mb-8 text-gray-700">{whoItsForIntro}</p>
+        <ul class="space-y-4">
+          {whoItsFor.map((who: string) => (
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+              <span class="text-lg text-gray-700">{who}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Outcomes -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-4">Results You Can Expect</h2>
+        <p class="text-lg mb-8 text-gray-700">{outcomeIntro}</p>
+        <ul class="space-y-4">
+          {outcomes.map((outcome: string) => (
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-blue-600 mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-lg text-gray-700">{outcome}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Detailed Process -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">Our Proven {service.name} Process</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{detailedProcess}</p>
+      </div>
+    </section>
+
+    <!-- Local Market Insights -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">{location.city} Market Insights</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{localMarketInsights}</p>
+      </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">Success Story: {service.name} Results</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{caseStudy}</p>
+      </div>
+    </section>
+
+    <!-- Timeline Expectations -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">What to Expect: {service.name} Timeline</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{timelineExpectations}</p>
+      </div>
+    </section>
+
+    <!-- Service Comparison -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">How {service.name} Compares</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{serviceComparison}</p>
+      </div>
+    </section>
+
+    <!-- Pricing Transparency (NO ACTUAL PRICING) -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-6">Understanding {service.name} Investment</h2>
+        <p class="text-lg leading-relaxed text-gray-700">{pricingTransparency}</p>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold mb-8">Frequently Asked Questions</h2>
+        <div class="space-y-8">
+          {faqs.map((faq: any) => (
+            <div>
+              <h3 class="text-2xl font-semibold mb-3 text-blue-900">{faq.question}</h3>
+              <p class="text-lg leading-relaxed text-gray-700">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-6">Get Started with {service.name} in {location.city}</h2>
+        <p class="text-xl mb-8 max-w-3xl mx-auto">{cta}</p>
+        <div class="mb-8">
+          <p class="text-lg">Phone: <a href="tel:07770580125" class="text-green-400 hover:text-green-300">07770 580125</a></p>
+          <p class="text-lg">Email: <a href="mailto:hello@outcomemarketing.com" class="text-green-400 hover:text-green-300">hello@outcomemarketing.com</a></p>
+        </div>
+        <a href="/contact" class="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-block">
+          Book Free Consultation
+        </a>
+      </div>
+    </section>
+
+    <!-- Breadcrumbs & Local Links -->
+    <section class="py-8 bg-white">
+      <div class="container mx-auto px-4">
+        <nav class="text-sm text-gray-600 mb-4">
+          <a href="/" class="text-blue-600 hover:text-blue-800">Home</a>
+          <span class="mx-2">&gt;</span>
+          <a href="/services" class="text-blue-600 hover:text-blue-800">Services</a>
+          <span class="mx-2">&gt;</span>
+          <a href={`/seo-services/${service.slug}`} class="text-blue-600 hover:text-blue-800">{service.name}</a>
+          <span class="mx-2">&gt;</span>
+          <span>{location.city}</span>
+        </nav>
+        <p class="text-sm text-gray-600">
+          Also serving: {location.nearbyCities.join(', ')}
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>

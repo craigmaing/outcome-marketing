@@ -1,0 +1,257 @@
+
+/* Design System Tokens for Outcome Digital Marketing Ltd */
+
+/* ===================================
+   COLOR TOKENS
+   =================================== */
+
+/* Primary Colors */
+:root {
+  --color-primary-blue: #1A5F7A;
+  --color-primary-blue-hover: #144559;
+  --color-primary-blue-light: #5DADE2;
+  --color-primary-blue-dark: #0F3443;
+  
+  --color-primary-green: #2E8B57;
+  --color-primary-green-hover: #236B47;
+  --color-primary-green-light: #58D68D;
+  --color-primary-green-dark: #1E593A;
+  
+  /* Neutral Colors */
+  --color-neutral-50: #F8F9FA;
+  --color-neutral-100: #E9ECEF;
+  --color-neutral-200: #DEE2E6;
+  --color-neutral-300: #CED4DA;
+  --color-neutral-400: #ADB5BD;
+  --color-neutral-500: #6C757D;
+  --color-neutral-600: #495057;
+  --color-neutral-700: #343A40;
+  --color-neutral-800: #212529;
+  --color-neutral-900: #000000;
+  
+  /* Semantic Colors */
+  --color-success: #2E8B57;
+  --color-success-light: #58D68D;
+  --color-success-hover: #236B47;
+  
+  --color-error: #DC3545;
+  --color-error-light: #F8D7DA;
+  --color-error-hover: #C82333;
+  
+  --color-warning: #FFC107;
+  --color-warning-light: #FFF3CD;
+  --color-warning-hover: #E0A800;
+  
+  --color-info: #17A2B8;
+  --color-info-light: #D1ECF1;
+  --color-info-hover: #138496;
+  
+  /* Text Colors */
+  --color-text-primary: var(--color-neutral-700);
+  --color-text-secondary: var(--color-neutral-600);
+  --color-text-muted: var(--color-neutral-500);
+  --color-text-inverse: #FFFFFF;
+  --color-text-on-primary: #FFFFFF;
+  --color-text-on-secondary: var(--color-primary-blue);
+}
+
+/* ===================================
+   TYPOGRAPHY TOKENS
+   =================================== */
+
+:root {
+  /* Font Families */
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Merriweather', serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.75rem;   /* 28px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.75;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+}
+
+/* ===================================
+   SPACING TOKENS
+   =================================== */
+
+:root {
+  /* Base spacing unit (8px) */
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+  
+  /* Semantic spacing */
+  --space-component-sm: var(--space-4);
+  --space-component-md: var(--space-6);
+  --space-component-lg: var(--space-8);
+  --space-section-sm: var(--space-12);
+  --space-section-md: var(--space-16);
+  --space-section-lg: var(--space-24);
+}
+
+/* ===================================
+   BORDER RADIUS TOKENS
+   =================================== */
+
+:root {
+  --radius-none: 0;
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.375rem;  /* 6px */
+  --radius-lg: 0.5rem;    /* 8px */
+  --radius-xl: 0.75rem;   /* 12px */
+  --radius-2xl: 1rem;     /* 16px */
+  --radius-full: 9999px;
+}
+
+/* ===================================
+   SHADOW TOKENS
+   =================================== */
+
+:root {
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Colored shadows */
+  --shadow-primary: 0 4px 14px 0 rgba(26, 95, 122, 0.25);
+  --shadow-success: 0 4px 14px 0 rgba(46, 139, 87, 0.25);
+}
+
+/* ===================================
+   Z-INDEX TOKENS
+   =================================== */
+
+:root {
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+}
+
+/* ===================================
+   TRANSITION TOKENS
+   =================================== */
+
+:root {
+  --transition-duration-fast: 150ms;
+  --transition-duration-normal: 200ms;
+  --transition-duration-slow: 300ms;
+  
+  --transition-timing-ease: ease;
+  --transition-timing-ease-in: ease-in;
+  --transition-timing-ease-out: ease-out;
+  --transition-timing-ease-in-out: ease-in-out;
+  
+  /* Common transitions */
+  --transition-colors: color var(--transition-duration-normal) var(--transition-timing-ease),
+                       background-color var(--transition-duration-normal) var(--transition-timing-ease),
+                       border-color var(--transition-duration-normal) var(--transition-timing-ease);
+  
+  --transition-opacity: opacity var(--transition-duration-normal) var(--transition-timing-ease);
+  
+  --transition-shadow: box-shadow var(--transition-duration-normal) var(--transition-timing-ease);
+  
+  --transition-transform: transform var(--transition-duration-normal) var(--transition-timing-ease);
+  
+  --transition-all: all var(--transition-duration-normal) var(--transition-timing-ease);
+}
+
+/* ===================================
+   BREAKPOINT TOKENS
+   =================================== */
+
+:root {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ===================================
+   COMPONENT-SPECIFIC TOKENS
+   =================================== */
+
+:root {
+  /* Button tokens */
+  --btn-height-sm: 2.5rem;   /* 40px */
+  --btn-height-md: 3rem;     /* 48px */
+  --btn-height-lg: 3.5rem;   /* 56px */
+  
+  --btn-padding-x-sm: 1rem;
+  --btn-padding-x-md: 1.5rem;
+  --btn-padding-x-lg: 2rem;
+  
+  /* Form tokens */
+  --form-control-height: 3rem;
+  --form-control-padding-x: 1rem;
+  --form-control-border-radius: var(--radius-md);
+  --form-control-border: 1px solid var(--color-neutral-300);
+  --form-control-border-focus: 2px solid var(--color-primary-blue);
+  
+  /* Card tokens */
+  --card-padding: var(--space-6);
+  --card-border-radius: var(--radius-lg);
+  --card-border: 1px solid var(--color-neutral-200);
+  --card-shadow: var(--shadow-md);
+  --card-shadow-hover: var(--shadow-lg);
+  
+  /* Navigation tokens */
+  --nav-height: 4rem;
+  --nav-padding-x: var(--space-6);
+  --nav-link-padding: var(--space-2) var(--space-4);
+  
+  /* Container tokens */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1400px;
+}

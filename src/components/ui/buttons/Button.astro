@@ -1,0 +1,100 @@
+---
+// Button Component for Outcome Digital Marketing Design System
+export interface Props {
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'success' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  disabled?: boolean;
+  loading?: boolean;
+  fullWidth?: boolean;
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  onClick?: string;
+  children: string;
+  ariaLabel?: string;
+  id?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  disabled = false,
+  loading = false,
+  fullWidth = false,
+  href,
+  type = 'button',
+  class: className = '',
+  onClick,
+  children,
+  ariaLabel,
+  id,
+} = Astro.props;
+
+// Generate base classes
+const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+
+// Size classes
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg'
+};
+
+// Variant classes
+const variantClasses = {
+  primary: 'bg-primary-blue text-white hover:bg-primary-blue-hover focus:ring-primary-blue',
+  secondary: 'bg-transparent text-primary-blue border-2 border-primary-blue hover:bg-primary-blue hover:text-white focus:ring-primary-blue',
+  tertiary: 'bg-transparent text-primary-blue hover:bg-primary-blue hover:bg-opacity-10 focus:ring-primary-blue',
+  success: 'bg-success text-white hover:bg-success-hover focus:ring-success',
+  outline: 'bg-transparent text-primary-blue border border-primary-blue hover:bg-primary-blue hover:text-white focus:ring-primary-blue'
+};
+
+// Width classes
+const widthClasses = fullWidth ? 'w-full' : '';
+
+// Loading state
+const loadingState = loading ? 'cursor-wait opacity-75' : '';
+
+// Combine all classes
+const buttonClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${widthClasses} ${loadingState} ${className}`.trim();
+
+// Generate unique ID if not provided
+const buttonId = id || `btn-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+{href ? (
+  <a 
+    href={href} 
+    class={buttonClasses}
+    aria-label={ariaLabel || children}
+    id={buttonId}
+    role="button"
+    tabindex={disabled ? '-1' : undefined}
+    aria-disabled={disabled ? 'true' : undefined}
+  >
+    {loading && (
+      <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+    )}
+    <slot>{children}</slot>
+  </a>
+) : (
+  <button 
+    type={type}
+    class={buttonClasses}
+    disabled={disabled || loading}
+    aria-label={ariaLabel || children}
+    id={buttonId}
+    {...(onClick && { 'onclick': onClick })}
+  >
+    {loading && (
+      <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+    )}
+    <slot>{children}</slot>
+  </button>
+)}

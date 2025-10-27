@@ -1,0 +1,430 @@
+/* Card Styles for Outcome Digital Marketing Design System */
+
+/* ===================================
+   CARD BASE STYLES
+   =================================== */
+
+.card {
+  background-color: #ffffff;
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  padding: var(--card-padding);
+  transition: var(--transition-all);
+  overflow: hidden;
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ===================================
+   CARD VARIANTS
+   =================================== */
+
+.card-default {
+  background-color: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  box-shadow: var(--shadow-md);
+}
+
+.card-elevated {
+  background-color: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-outlined {
+  background-color: #ffffff;
+  border: 2px solid var(--color-neutral-300);
+  box-shadow: none;
+}
+
+.card-flat {
+  background-color: #ffffff;
+  border: none;
+  box-shadow: none;
+}
+
+/* ===================================
+   CARD PADDING VARIANTS
+   =================================== */
+
+.card-padding-none {
+  padding: 0;
+}
+
+.card-padding-sm {
+  padding: var(--space-4);
+}
+
+.card-padding-md {
+  padding: var(--space-6);
+}
+
+.card-padding-lg {
+  padding: var(--space-8);
+}
+
+/* ===================================
+   CARD BORDER RADIUS VARIANTS
+   =================================== */
+
+.card-rounded-none {
+  border-radius: var(--radius-none);
+}
+
+.card-rounded-sm {
+  border-radius: var(--radius-sm);
+}
+
+.card-rounded-md {
+  border-radius: var(--radius-md);
+}
+
+.card-rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+.card-rounded-xl {
+  border-radius: var(--radius-xl);
+}
+
+/* ===================================
+   SERVICE CARD STYLES
+   =================================== */
+
+.service-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: var(--transition-all);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.service-card-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary-blue);
+  background-opacity: 0.1;
+  color: var(--color-primary-blue);
+}
+
+.service-card-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+  line-height: var(--line-height-tight);
+}
+
+.service-card-description {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+  flex-grow: 1;
+  line-height: var(--line-height-relaxed);
+}
+
+.service-card-link {
+  color: var(--color-primary-blue);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: var(--transition-colors);
+}
+
+.service-card-link:hover {
+  color: var(--color-primary-blue-hover);
+  text-decoration: underline;
+}
+
+/* ===================================
+   SERVICE CARD FEATURED VARIANT
+   =================================== */
+
+.service-card-featured {
+  border-left: 4px solid var(--color-primary-green);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card-featured:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+/* ===================================
+   TESTIMONIAL CARD STYLES
+   =================================== */
+
+.testimonial-card {
+  background-color: var(--color-neutral-50);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: var(--transition-all);
+}
+
+.testimonial-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.testimonial-card-featured {
+  background-color: var(--color-primary-blue);
+  color: white;
+  border: none;
+}
+
+.testimonial-card-featured .testimonial-card-quote {
+  color: white;
+}
+
+.testimonial-card-featured .testimonial-card-author {
+  color: white;
+}
+
+.testimonial-card-featured .testimonial-card-role {
+  color: var(--color-primary-blue-light);
+}
+
+.testimonial-card-quote {
+  font-family: var(--font-secondary);
+  font-style: italic;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-6);
+}
+
+.testimonial-card-author {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.testimonial-card-role {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.testimonial-card-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-right: var(--space-4);
+  object-fit: cover;
+}
+
+.testimonial-card-avatar-placeholder {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-right: var(--space-4);
+  background-color: var(--color-primary-blue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+}
+
+/* ===================================
+   CASE STUDY CARD STYLES
+   =================================== */
+
+.case-study-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition-all);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.case-study-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.case-study-card-featured {
+  border-left: 4px solid var(--color-primary-green);
+  box-shadow: var(--shadow-md);
+}
+
+.case-study-card-featured:hover {
+  box-shadow: var(--shadow-xl);
+}
+
+.case-study-card-image {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+}
+
+.case-study-card-content {
+  padding: var(--space-6);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.case-study-card-category {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-primary-blue);
+  background-opacity: 0.1;
+  color: var(--color-primary-blue);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-3);
+}
+
+.case-study-card-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+  line-height: var(--line-height-tight);
+}
+
+.case-study-card-excerpt {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+  flex-grow: 1;
+  line-height: var(--line-height-relaxed);
+}
+
+.case-study-card-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.case-study-card-metric {
+  text-align: center;
+  padding: var(--space-3);
+  background-color: var(--color-neutral-50);
+  border-radius: var(--radius-md);
+}
+
+.case-study-card-metric-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-green);
+  margin-bottom: var(--space-1);
+}
+
+.case-study-card-metric-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.case-study-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.case-study-card-tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-neutral-100);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-md);
+}
+
+.case-study-card-link {
+  color: var(--color-primary-blue);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: var(--transition-colors);
+}
+
+.case-study-card-link:hover {
+  color: var(--color-primary-blue-hover);
+  text-decoration: underline;
+}
+
+/* ===================================
+   CARD GROUP STYLES
+   =================================== */
+
+.card-group {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.card-group-cols-1 {
+  grid-template-columns: 1fr;
+}
+
+.card-group-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.card-group-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.card-group-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ===================================
+   RESPONSIVE CARD STYLES
+   =================================== */
+
+@media (max-width: 1024px) {
+  .card-group-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-group-cols-3,
+  .card-group-cols-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .case-study-card-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===================================
+   CARD ACCESSIBILITY
+   =================================== */
+
+.card:focus-visible {
+  outline: 2px solid var(--color-primary-blue);
+  outline-offset: 2px;
+}
+
+.card[tabindex="0"]:focus-visible {
+  outline: 2px solid var(--color-primary-blue);
+  outline-offset: 2px;
+}

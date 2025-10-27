@@ -1,0 +1,105 @@
+---
+// Form Checkbox Component for Outcome Digital Marketing Design System
+export interface Props {
+  name: string;
+  id?: string;
+  label?: string;
+  value?: string;
+  checked?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  error?: string;
+  hint?: string;
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'card';
+  class?: string;
+  labelClass?: string;
+  inputClass?: string;
+}
+
+const {
+  name,
+  id,
+  label,
+  value,
+  checked = false,
+  required = false,
+  disabled = false,
+  error,
+  hint,
+  size = 'md',
+  variant = 'default',
+  class: className = '',
+  labelClass = '',
+  inputClass = '',
+} = Astro.props;
+
+// Generate unique ID if not provided
+const checkboxId = id || `checkbox-${name}-${Math.random().toString(36).substr(2, 9)}`;
+
+// Generate base classes
+const baseClasses = 'rounded border-neutral-300 text-primary-blue focus:ring-primary-blue transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
+
+// Size classes
+const sizeClasses = {
+  sm: 'w-4 h-4',
+  md: 'w-5 h-5',
+  lg: 'w-6 h-6'
+};
+
+// Variant classes
+const variantClasses = {
+  default: '',
+  card: 'sr-only'
+};
+
+// Error classes
+const errorClasses = error 
+  ? 'border-error focus:ring-error' 
+  : '';
+
+// Combine all input classes
+const inputClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${errorClasses} ${inputClass}`.trim();
+
+// Label classes
+const labelClassesCombined = `text-sm font-medium text-neutral-700 ${error ? 'text-error' : ''} ${labelClass}`.trim();
+
+// Container classes
+const containerClasses = variant === 'card' 
+  ? `relative border-2 rounded-lg p-4 cursor-pointer transition-colors ${checked ? 'border-primary-blue bg-primary-blue bg-opacity-5' : 'border-neutral-300 hover:border-neutral-400'} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`
+  : 'flex items-start';
+
+// Hint/error text classes
+const hintTextClasses = `mt-2 text-sm ${error ? 'text-error' : 'text-neutral-500'}`;
+---
+
+<div class={`form-group ${className}`}>
+  <div class={containerClasses}>
+    <input
+      type="checkbox"
+      name={name}
+      id={checkboxId}
+      value={value}
+      checked={checked}
+      required={required}
+      disabled={disabled}
+      class={inputClasses}
+      aria-describedby={hint || error ? `${checkboxId}-description` : undefined}
+      aria-invalid={error ? 'true' : 'false'}
+      aria-required={required ? 'true' : 'false'}
+    />
+    
+    {label && (
+      <label for={checkboxId} class={labelClassesCombined}>
+        {label}
+        {required && <span class="text-error ml-1">*</span>}
+      </label>
+    )}
+  </div>
+  
+  {(hint || error) && (
+    <div id={`${checkboxId}-description`} class={hintTextClasses}>
+      {error || hint}
+    </div>
+  )}
+</div>

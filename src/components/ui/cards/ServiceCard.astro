@@ -1,0 +1,128 @@
+---
+// Modern Service Card Component - 2025 Design Pattern
+// Features: Advanced microinteractions, icon animations, gradient effects
+export interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  iconColor?: 'primary' | 'secondary' | 'success';
+  href?: string;
+  buttonText?: string;
+  variant?: 'default' | 'featured';
+  class?: string;
+  id?: string;
+}
+
+const {
+  title,
+  description,
+  icon,
+  iconColor = 'primary',
+  href,
+  buttonText = 'Learn More',
+  variant = 'default',
+  class: className = '',
+  id,
+} = Astro.props;
+
+// Icon color configuration with gradient backgrounds
+const iconConfig = {
+  primary: {
+    text: 'text-primary',
+    bg: 'bg-primary/10',
+    gradient: 'from-primary to-primary-dark',
+    hoverBg: 'group-hover:bg-primary/20'
+  },
+  secondary: {
+    text: 'text-accent',
+    bg: 'bg-accent/10',
+    gradient: 'from-accent to-accent-dark',
+    hoverBg: 'group-hover:bg-accent/20'
+  },
+  success: {
+    text: 'text-success',
+    bg: 'bg-success/10',
+    gradient: 'from-success to-success-dark',
+    hoverBg: 'group-hover:bg-success/20'
+  }
+};
+
+const currentIconConfig = iconConfig[iconColor];
+
+// Base card styling with modern effects
+const baseClasses = 'group relative bg-white border border-gray-200 rounded-xl p-8 transition-all duration-300 ease-out overflow-hidden';
+
+// Variant-specific enhancements
+const variantClasses = {
+  default: 'hover:shadow-2xl hover:-translate-y-2 hover:border-gray-300',
+  featured: 'border-l-4 border-l-success shadow-lg hover:shadow-2xl hover:-translate-y-2 bg-gradient-to-br from-white to-gray-50'
+};
+
+// Combine classes
+const cardClasses = `${baseClasses} ${variantClasses[variant]} ${className}`.trim();
+
+// Generate unique ID
+const cardId = id || `service-card-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div class={cardClasses} id={cardId}>
+  <!-- Subtle gradient overlay on hover -->
+  <div class="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+  <!-- Content container -->
+  <div class="relative z-10">
+    {icon && (
+      <div class={`mb-6 ${currentIconConfig.bg} ${currentIconConfig.hoverBg} w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-md`}>
+        <svg class={`w-8 h-8 ${currentIconConfig.text} transition-transform duration-300 group-hover:scale-110`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill-rule="evenodd" d={icon} clip-rule="evenodd" />
+        </svg>
+      </div>
+    )}
+
+    <h3 class="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors duration-300">
+      {title}
+    </h3>
+
+    <p class="text-gray-600 mb-8 leading-relaxed text-base">
+      {description}
+    </p>
+
+    {href ? (
+      <a
+        href={href}
+        class="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark transition-all duration-200 group/link"
+        aria-label={`Learn more about ${title}`}
+      >
+        <span>{buttonText}</span>
+        <svg
+          class="w-5 h-5 transition-transform duration-200 group-hover/link:translate-x-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+    ) : (
+      <button
+        class="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark transition-all duration-200 group/button"
+        aria-label={`Learn more about ${title}`}
+      >
+        <span>{buttonText}</span>
+        <svg
+          class="w-5 h-5 transition-transform duration-200 group-hover/button:translate-x-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </button>
+    )}
+  </div>
+
+  <!-- Decorative corner accent (only visible on hover) -->
+  <div class={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${currentIconConfig.gradient} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500 pointer-events-none`}></div>
+</div>
