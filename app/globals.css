@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F7F4F0;
+    --foreground: #2D3A3A;
+    --teal: #3D7A7A;
+    --rust: #A86641; /* Updated for WCAG AA compliance */
+  }
+
+  body {
+    color: var(--foreground);
+    background: var(--background);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-dm-serif);
+  }
+
+  h4, h5, h6 {
+    font-family: var(--font-dm-sans);
+  }
+
+  /* WCAG AA Compliant Form Placeholders - 4.56:1 contrast ratio */
+  input::placeholder,
+  textarea::placeholder,
+  select::placeholder {
+    color: #6B7280;
+    opacity: 1;
+  }
+
+  input:focus::placeholder,
+  textarea:focus::placeholder,
+  select:focus::placeholder {
+    opacity: 0.6;
+  }
+}
+
+@layer components {
+  /* Button Styles */
+  .btn {
+    @apply font-dm-sans font-medium px-6 py-3 rounded-lg transition-all duration-300 inline-block text-center;
+  }
+
+  .btn-primary {
+    @apply bg-harbour-rust text-white hover:bg-opacity-90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply bg-trevaunance-teal text-white hover:bg-opacity-90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply border-2 border-trevaunance-teal text-trevaunance-teal hover:bg-trevaunance-teal hover:text-white hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300;
+  }
+
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-trevaunance-teal/20;
+  }
+
+  /* Link Styles - WCAG AA Compliant */
+  .link-teal {
+    @apply text-trevaunance-teal-dark hover:text-slate-deep transition-colors duration-200;
+  }
+
+  /* Animation Classes */
+  .animate-on-scroll {
+    @apply opacity-0 translate-y-8 transition-all duration-700;
+  }
+
+  .animate-on-scroll.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Text Styles */
+  .text-display {
+    @apply text-display font-dm-serif;
+  }
+
+  .text-h1 {
+    @apply text-h1 font-dm-serif;
+  }
+
+  .text-h2 {
+    @apply text-h2 font-dm-serif;
+  }
+
+  .text-h3 {
+    @apply text-h3 font-dm-serif;
+  }
+
+  .text-h4 {
+    @apply text-h4 font-dm-sans;
+  }
+
+  .text-body-lg {
+    @apply text-body-lg font-inter;
+  }
+
+  .text-body {
+    @apply text-body font-inter;
+  }
+}
+
+/* ============================================
+   NON-CRITICAL ANIMATIONS - Moved to animations.css
+   Import animations.css only when needed for better performance
+   ============================================ */

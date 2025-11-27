@@ -1,0 +1,259 @@
+/* ============================================
+   NON-CRITICAL ANIMATIONS - LAZY LOADED
+   ============================================ */
+
+/* Enhanced Fade Up Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade Up from Left */
+@keyframes fadeUpLeft {
+  from {
+    opacity: 0;
+    transform: translate(-30px, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* Fade Up from Right */
+@keyframes fadeUpRight {
+  from {
+    opacity: 0;
+    transform: translate(30px, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide In from Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide In from Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Pulse Glow Animation (for CTA buttons) - Updated for new Harbour Rust */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 6px -1px rgba(168, 102, 65, 0.3),
+                0 2px 4px -1px rgba(168, 102, 65, 0.2),
+                0 0 0 0 rgba(168, 102, 65, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 6px -1px rgba(168, 102, 65, 0.3),
+                0 2px 4px -1px rgba(168, 102, 65, 0.2),
+                0 0 0 8px rgba(168, 102, 65, 0);
+  }
+}
+
+/* Bounce In Animation */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Success Checkmark Draw Animation */
+@keyframes checkmarkDraw {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ============================================
+   ANIMATION CLASSES
+   ============================================ */
+
+/* Base Scroll Animation */
+.animate-on-scroll {
+  opacity: 0;
+  animation: fadeUp 0.6s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.animate-on-scroll.is-visible {
+  animation-play-state: running;
+}
+
+/* Fade Up Variants */
+.animate-fade-up-left {
+  opacity: 0;
+  animation: fadeUpLeft 0.6s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.animate-fade-up-left.is-visible {
+  animation-play-state: running;
+}
+
+.animate-fade-up-right {
+  opacity: 0;
+  animation: fadeUpRight 0.6s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.animate-fade-up-right.is-visible {
+  animation-play-state: running;
+}
+
+/* Scale In */
+.animate-scale-in {
+  opacity: 0;
+  animation: scaleIn 0.5s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.animate-scale-in.is-visible {
+  animation-play-state: running;
+}
+
+/* Slide Variants */
+.animate-slide-left {
+  opacity: 0;
+  animation: slideInLeft 0.5s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.animate-slide-left.is-visible {
+  animation-play-state: running;
+}
+
+.animate-slide-right {
+  opacity: 0;
+  animation: slideInRight 0.5s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.animate-slide-right.is-visible {
+  animation-play-state: running;
+}
+
+/* Legacy fade-up support */
+.animate-fade-up {
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+/* Legacy slide-in support */
+.animate-slide-in {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+/* Continuous Animations */
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Bounce In */
+.animate-bounce-in {
+  animation: bounceIn 0.6s ease-out forwards;
+}
+
+/* Checkmark Animation */
+.animate-checkmark {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: checkmarkDraw 0.6s ease-out 0.3s forwards;
+}
+
+/* ============================================
+   STAGGER DELAYS
+   ============================================ */
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+.stagger-7 { animation-delay: 0.7s; }
+.stagger-8 { animation-delay: 0.8s; }
+
+/* Legacy delay support */
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }
+
+/* ============================================
+   REDUCED MOTION SUPPORT
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-pulse-glow {
+    animation: none !important;
+  }
+
+  .animate-on-scroll,
+  .animate-fade-up-left,
+  .animate-fade-up-right,
+  .animate-scale-in,
+  .animate-slide-left,
+  .animate-slide-right {
+    opacity: 1 !important;
+  }
+}
