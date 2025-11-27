@@ -55,11 +55,32 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      // Live form submission - replace with your actual endpoint
-      console.log('Form submitted:', formData);
+      // Convert helpWith array to comma-separated string for Netlify
+      const helpWithString = formData.helpWith.length > 0
+        ? formData.helpWith.join(', ')
+        : '';
 
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Encode form data for Netlify Forms submission
+      const formDataEncoded = new URLSearchParams({
+        'form-name': 'contact',
+        'name': formData.name,
+        'phone': formData.phone,
+        'businessName': formData.businessName,
+        'hearAbout': formData.hearAbout,
+        'helpWith': helpWithString,
+        'message': formData.message,
+      }).toString();
+
+      // Submit to Netlify Forms
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formDataEncoded,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed with status: ${response.status}`);
+      }
 
       setSubmitSuccess(true);
 
@@ -74,7 +95,7 @@ export default function ContactPage() {
       });
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('Something went wrong. Please try again.');
+      alert('Something went wrong submitting your message. Please try again or contact us directly at craig.fearn@ligthousementoring.co.uk');
     } finally {
       setIsSubmitting(false);
     }
@@ -249,7 +270,24 @@ export default function ContactPage() {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form
+                    name="contact"
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    onSubmit={handleSubmit}
+                    className="space-y-6"
+                  >
+                    {/* Hidden fields for Netlify Forms */}
+                    <input type="hidden" name="form-name" value="contact" />
+
+                    {/* Honeypot field for spam protection - hidden from users */}
+                    <div style={{ display: 'none' }}>
+                      <label>
+                        Don't fill this out if you're human: <input name="bot-field" />
+                      </label>
+                    </div>
+
                     {/* Name - Required */}
                     <div>
                       <label htmlFor="name" className="block text-sm font-dm-sans font-semibold text-slate-deep mb-2">

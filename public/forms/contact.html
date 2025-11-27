@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form - Static for Netlify Detection</title>
+</head>
+<body>
+    <!-- This static HTML form is required for Netlify Forms detection during build time.
+         It should never be visible to users - it exists only for Netlify's form parser. -->
+
+    <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+        <!-- Hidden fields for Netlify -->
+        <input type="hidden" name="form-name" value="contact" />
+
+        <!-- Honeypot field for spam protection -->
+        <input type="text" name="bot-field" />
+
+        <!-- Actual form fields matching the React form -->
+        <label>
+            Name:
+            <input type="text" name="name" required />
+        </label>
+
+        <label>
+            Phone:
+            <input type="tel" name="phone" />
+        </label>
+
+        <label>
+            Business Name:
+            <input type="text" name="businessName" />
+        </label>
+
+        <label>
+            How did you hear about us:
+            <select name="hearAbout">
+                <option value="">Select an option</option>
+                <option value="google">Google</option>
+                <option value="social">Social Media</option>
+                <option value="referral">Referral</option>
+                <option value="other">Other</option>
+            </select>
+        </label>
+
+        <label>
+            What can we help with:
+            <input type="text" name="helpWith" />
+        </label>
+
+        <label>
+            Message:
+            <textarea name="message"></textarea>
+        </label>
+
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

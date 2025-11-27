@@ -1,0 +1,40 @@
+# Netlify Configuration for Outcome Marketing Website
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Next.js plugin for optimal deployment
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Contact Form Configuration
+[[forms]]
+  name = "contact"
+
+# Email notifications for form submissions
+[[forms.notifications]]
+  type = "email"
+  event = "submission"
+  # Email address for form notifications
+  to = "craig.fearn@ligthousementoring.co.uk"
+  # Subject line for notification emails
+  subject = "New Contact Form Submission - Outcome Marketing"
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Redirect rules (if needed in future)
+# [[redirects]]
+#   from = "/old-path"
+#   to = "/new-path"
+#   status = 301
