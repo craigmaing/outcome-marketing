@@ -102,13 +102,13 @@ export default function Footer() {
                   </Link>
                 </li>
               </ul>
-              <div className="text-sm">
-                <p className="text-cottage-cream mb-1">Cornwall, United Kingdom</p>
+              <div className="text-sm space-y-2">
+                <p className="text-cottage-cream">Cornwall, United Kingdom</p>
                 <a
-                  href="mailto:hello@outcomemarketing.co.uk"
-                  className="text-trevaunance-teal-light hover:text-harbour-rust transition-colors duration-200 py-2 inline-block"
+                  href="tel:+447770580125"
+                  className="text-cottage-cream hover:text-trevaunance-teal-light transition-colors duration-200 inline-block"
                 >
-                  hello@outcomemarketing.co.uk
+                  07770 580125
                 </a>
               </div>
             </div>

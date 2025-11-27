@@ -24,7 +24,7 @@ export default function ContactLayout({
     mainEntity: {
       '@type': 'Organization',
       name: 'Outcome Marketing',
-      email: 'hello@outcomemarketing.co.uk',
+      telephone: '+447770580125',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Cornwall',

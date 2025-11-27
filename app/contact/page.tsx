@@ -8,7 +8,6 @@ import Button from '@/components/ui/Button';
 
 interface FormData {
   name: string;
-  email: string;
   phone: string;
   businessName: string;
   hearAbout: string;
@@ -18,13 +17,11 @@ interface FormData {
 
 interface FormErrors {
   name?: string;
-  email?: string;
 }
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
-    email: '',
     phone: '',
     businessName: '',
     hearAbout: '',
@@ -42,13 +39,6 @@ export default function ContactPage() {
     // Name validation
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
-    }
-
-    // Email validation
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
     }
 
     setErrors(newErrors);
@@ -76,7 +66,6 @@ export default function ContactPage() {
       // Reset form after successful submission
       setFormData({
         name: '',
-        email: '',
         phone: '',
         businessName: '',
         hearAbout: '',
@@ -85,7 +74,7 @@ export default function ContactPage() {
       });
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('Something went wrong. Please try again or email us directly.');
+      alert('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -167,16 +156,15 @@ export default function ContactPage() {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-sm font-dm-sans font-semibold text-slate-deep uppercase tracking-wide mb-2">
-                    Email
+                    Phone
                   </h3>
                   <a
-                    href="mailto:hello@outcomemarketing.co.uk"
-                    className="text-trevaunance-teal-dark hover:text-slate-deep transition-colors text-lg font-medium"
+                    href="tel:+447770580125"
+                    className="text-secondary-text hover:text-trevaunance-teal-dark transition-colors duration-200 inline-block"
                   >
-                    hello@outcomemarketing.co.uk
+                    07770 580125
                   </a>
                 </div>
-
                 <div>
                   <h3 className="text-sm font-dm-sans font-semibold text-slate-deep uppercase tracking-wide mb-2">
                     Response Time
@@ -282,29 +270,6 @@ export default function ContactPage() {
                       />
                       {errors.name && (
                         <p className="mt-1 text-sm text-red-600">{errors.name}</p>
-                      )}
-                    </div>
-
-                    {/* Email - Required */}
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-dm-sans font-semibold text-slate-deep mb-2">
-                        Email <span className="text-harbour-rust">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className={`w-full px-4 py-3 rounded-lg border ${
-                          errors.email
-                            ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20'
-                            : 'border-slate-200 focus:border-trevaunance-teal focus:ring-trevaunance-teal/20'
-                        } focus:ring-4 focus:outline-none transition-all duration-300 focus:scale-[1.01]`}
-                        placeholder="your.email@example.com"
-                      />
-                      {errors.email && (
-                        <p className="mt-1 text-sm text-red-600">{errors.email}</p>
                       )}
                     </div>
 

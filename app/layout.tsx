@@ -88,13 +88,13 @@ export default function RootLayout({
     url: 'https://outcomemarketing.co.uk',
     logo: 'https://outcomemarketing.co.uk/logo-black.png',
     description: 'Cornwall-based digital marketing agency delivering honest, transparent, and results-driven strategies',
+    telephone: '+447770580125',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Cornwall',
       addressCountry: 'GB',
     },
     areaServed: 'United Kingdom',
-    email: 'hello@outcomemarketing.co.uk',
     sameAs: [],
   };
 
@@ -104,8 +104,7 @@ export default function RootLayout({
     name: 'Outcome Marketing',
     description: 'Cornwall-based digital marketing agency specializing in website design, SEO services, blog writing, and digital marketing for UK businesses',
     url: 'https://outcomemarketing.co.uk',
-    telephone: '',
-    email: 'hello@outcomemarketing.co.uk',
+    telephone: '+447770580125',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Cornwall',
