@@ -95,7 +95,7 @@ export default function ContactPage() {
       });
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('Something went wrong submitting your message. Please try again or contact us directly at craig.fearn@ligthousementoring.co.uk');
+      alert('Something went wrong submitting your message. Please try again or call us on 07770 580125');
     } finally {
       setIsSubmitting(false);
     }
