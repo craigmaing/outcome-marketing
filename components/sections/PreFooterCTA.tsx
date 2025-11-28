@@ -24,7 +24,7 @@ export default function PreFooterCTA({
   buttonText = "Get in Touch",
   buttonHref = "/contact",
   phoneText = "Or call us:",
-  phoneNumber = "01326 123456",
+  phoneNumber = "07770 580125",
 }: PreFooterCTAProps) {
   return (
     <section className="bg-cottage-cream py-20 md:py-28">
